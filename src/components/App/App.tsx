@@ -6,9 +6,9 @@ import Loader from "../Loader/Loader";
 import toast, { Toaster } from "react-hot-toast";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageModal from "../ImageModal/ImageModal";
-import fetchImagesWithData from "../../images-api";
+import fetchImagesWithData from "../../images-api-service";
 
-import { Image } from "../../images-api";
+import { Image } from "../../images-api-service";
 
 
 // import css from './App.module.css';

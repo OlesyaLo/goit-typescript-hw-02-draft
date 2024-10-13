@@ -1,6 +1,6 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
-import { Image } from "../../images-api";
+import { Image } from "../../images-api-service";
 
 
 interface ImageGalleryProps {

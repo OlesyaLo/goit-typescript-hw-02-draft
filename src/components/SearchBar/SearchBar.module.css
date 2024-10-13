@@ -60,6 +60,7 @@
   
   .searchBtn:hover {
     scale: 1.2;
+    outline: none;
   }
   
   .toaster {

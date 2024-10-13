@@ -51,7 +51,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
             <Toaster
                 position="top-center"
                 reverseOrder={false}
-                className={css.toaster}
+                // className={css.}
             />
         </header>
       )
