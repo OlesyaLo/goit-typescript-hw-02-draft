@@ -1,28 +1,23 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 
-axios.defaults.baseURL = "https://api.unsplash.com/";
-const API_KEY = "0HZsnhF0eGTg4Z-8uEOqz8aaniSmI_t9e2hfVKE5Yvk";
+const baseURL: string = "https://api.unsplash.com/";
+const API_KEY: string = "4MoWKk3EwDxLdHu7iYFCl-M2_FKh17wjeWzz6Hg5kMU";
 
-export type ImageResult = {
-  id: string;
-  description: string | null;
-  alt_description: string | null;
+export type Image = {
+  id: number;
+  alt_description: string;
   urls: {
-    raw: string;
-    full: string;
     regular: string;
     small: string;
-    thumb: string;
   };
-};
+  description: string;
+}
 
-type ApiResponse = {
-  results: ImageResult[];
-  total: number;
-  total_pages: number;
-};
-
+export interface ApiServiceType {
+  query: string;
+  page: number;
+}
 
 interface ParamsType {
   client_id: string;
@@ -31,28 +26,27 @@ interface ParamsType {
   page: number;
 }
 
+type ReturnType = {
+  total_pages: number;
+  results: Image[];
+};
+
 export const fetchImagesWithData = async (
   query: string,
   page: number
-): Promise<ImageResult[]> => {
-  try {
-    const params: ParamsType = {
+): Promise<AxiosResponse<ReturnType>> => {
+  const params: ParamsType = {
     client_id: API_KEY,
     query: query,
     per_page: 12,
     page: page,
   };
-  
-  const response = await axios.get<ApiResponse>("/search/photos/", { params });
+  const data = await axios.get<ReturnType>(`${baseURL}/search/photos`, {
+    params,
+  });
+  console.log(data);
 
-
-  return response.data.results;
-} catch (error: unknown) {
-  if (axios.isAxiosError(error)) {
-    console.error("Error fetching articles:", error.message);
-  } else {
-    console.error("Error fetching articles:", error);
-  }
-  throw error;
-}
+  return data;
 };
+
+export default fetchImagesWithData;

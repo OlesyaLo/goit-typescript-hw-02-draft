@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../SearchBar/SearchBar.jsx";
-import ImageGallery from "../ImageGallery/ImageGallery.jsx";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
-import Loader from "../Loader/Loader.jsx";
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import Loader from "../Loader/Loader";
 import toast, { Toaster } from "react-hot-toast";
-import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
-import ImageModal from "../ImageModal/ImageModal.jsx";
-import {fetchImagesWithData} from "../../images-api.js";
-import { ImageItem } from "../ImageGallery/ImageGallery.types";
-import { ImageResult, fetchArticlesWithTopic } from "../../images-api";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ImageModal from "../ImageModal/ImageModal";
+import fetchImagesWithData from "../../images-api";
+
+import { Image } from "../../images-api";
 
 
 // import css from './App.module.css';
 
 function App() {
-  const [images, setImages] = useState<ImageItem[]>([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loadBtn, setLoadBtn] = useState(false);
-  const [selectedImg, setSelectedImg] = useState(null);
+
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadBtn, setLoadBtn] = useState<boolean>(false);
+  const [selectedImg, setSelectedImg] = useState<string | null>(null)
   
   
   useEffect(() => {
@@ -51,7 +52,7 @@ function App() {
     fetchImages();
   }, [query, page]);
 
-  const handleSearch = newQuery => {
+  const handleSearch = (newQuery: string) => {
     if (newQuery !== query) {
       setQuery(newQuery);
       setLoadBtn(false);
@@ -61,7 +62,7 @@ function App() {
       }
   };
 
-   const openModal = (image) => {
+   const openModal = (image: string) => {
     setSelectedImg(image);
   };
 

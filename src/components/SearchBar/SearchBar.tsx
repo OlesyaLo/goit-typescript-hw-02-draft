@@ -1,10 +1,16 @@
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import { FaSearch } from "react-icons/fa";
-
+import { FC } from "react";
 
 import css from "./SearchBar.module.css";
-export default function SearchBar({onSubmit}) {
+
+
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
     const [query, setQuery] = useState('');
 
     const handleSubmit = (evt) => {
@@ -45,33 +51,12 @@ export default function SearchBar({onSubmit}) {
             <Toaster
                 position="top-center"
                 reverseOrder={false}
-                className= {css}
+                className={css.toaster}
             />
         </header>
       )
     };
+    export default SearchBar;
 
-    // const handleSubmit = (values) => {
-    //     if (!values.searchQuery.trim()) {
-    //       return toast.error("Write anything😉");
-    //     }
-    //     onSubmit(values.searchQuery);
-    //   };
-    //   return (
-    //     <header className={css.header}>
-    //       <Formik initialValues={{ searchQuery: "" }} onSubmit={handleSubmit}>
-    //         <Form className={css.searchForm}>
-    //           <Field
-    //             className={css.input}
-    //             type="text"
-    //             name="searchQuery"
-    //             placeholder="Search images and photos"
-    //           ></Field>
-    //           <button className={css.searchBtn} type="submit">
-    //             Search
-    //           </button>
-    //         </Form>
-    //       </Formik>
-    //     </header>
-    //   );
+   
     

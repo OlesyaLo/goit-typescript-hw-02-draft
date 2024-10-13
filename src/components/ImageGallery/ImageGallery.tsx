@@ -1,7 +1,16 @@
-import ImageCard from "../ImageCard/ImageCard.jsx";
+import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import { Image } from "../../images-api";
 
-export default function ImageGallery({ images, openModal }) {
+
+interface ImageGalleryProps {
+  images: Image[];
+  openModal: (image: string) => void;
+}
+
+
+
+const ImageGallery = ({ images, openModal }: ImageGalleryProps) => {
   return (
     <ul className={css.imgGallery}>
       {images.map((image) => {
@@ -14,3 +23,4 @@ export default function ImageGallery({ images, openModal }) {
     </ul>
   )
 }
+export default ImageGallery;
